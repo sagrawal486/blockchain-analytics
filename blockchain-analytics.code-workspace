@@ -1,0 +1,65 @@
+{
+    "folders": [
+      {
+        "name": "Backend (FastAPI)",
+        "path": "./backend"
+      },
+      {
+        "name": "Frontend (React)",
+        "path": "./frontend"
+      }
+    ],
+    "settings": {
+      "python.defaultInterpreterPath": "${workspaceFolder}/venv/Scripts/python.exe"
+    },
+    "launch": {
+      "version": "0.2.0",
+      "configurations": [
+        {
+          "name": "🚀 FastAPI Backend",
+          "type": "debugpy",
+          "request": "launch",
+          "module": "uvicorn",
+          "args": [
+            "main:app",
+            "--reload",
+            "--port",
+            "8000",
+            "--log-level",
+            "debug"
+          ],
+          "cwd": "${workspaceFolder}/backend",
+          "env": {
+            "PYTHONPATH": "${workspaceFolder}/backend"
+          },
+          "justMyCode": false
+        },
+        {
+          "name": "⚛️ React Frontend",
+          "type": "chrome",
+          "request": "launch",
+          "url": "http://localhost:5173",
+          "webRoot": "${workspaceFolder}/frontend/src",
+          "sourceMapPathOverrides": {
+            "meteor://💻app/*": "${webRoot}/*"
+          }
+        },
+        {
+          "name": "🔥 Full Stack (Both)",
+          "configurations": [
+            "🚀 FastAPI Backend",
+            "⚛️ React Frontend"
+          ]
+        }
+      ],
+      "compounds": [
+        {
+          "name": "🔥 Full Stack (Both)",
+          "configurations": [
+            "🚀 FastAPI Backend",
+            "⚛️ React Frontend"
+          ]
+        }
+      ]
+    }
+  }

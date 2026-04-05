@@ -1,0 +1,70 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FastAPI: backend (debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/backend/venv/Scripts/python.exe",
+      "module": "uvicorn",
+      "args": ["main:app", "--host", "127.0.0.1", "--port", "8000"],
+      "cwd": "${workspaceFolder}/backend",
+      "jinja": true,
+      "justMyCode": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "FastAPI: backend + --reload",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/backend/venv/Scripts/python.exe",
+      "module": "uvicorn",
+      "args": ["main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"],
+      "cwd": "${workspaceFolder}/backend",
+      "jinja": true,
+      "justMyCode": true,
+      "console": "integratedTerminal",
+      "subProcess": true
+    },
+    {
+      "name": "Frontend: Vite + Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend",
+      "preLaunchTask": "frontend: vite dev"
+    },
+    {
+      "name": "Frontend: Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend"
+    },
+    {
+      "name": "Frontend: Vite + Edge",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend",
+      "preLaunchTask": "frontend: vite dev"
+    },
+    {
+      "name": "Frontend: Edge",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full stack: API + Vite + Chrome",
+      "configurations": [
+        "FastAPI: backend + --reload",
+        "Frontend: Vite + Chrome"
+      ],
+      "stopAll": true
+    }
+  ]
+}
