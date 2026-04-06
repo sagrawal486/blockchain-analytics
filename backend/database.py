@@ -11,10 +11,16 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-#engine = create_engine(DATABASE_URL)
+# Railway Postgres uses *.rlwy.net; public URLs often omit the substring "railway".
+_use_pg_ssl = bool(
+    os.getenv("RAILWAY_ENVIRONMENT")
+    or (DATABASE_URL and "rlwy.net" in DATABASE_URL)
+    or (DATABASE_URL and "railway" in DATABASE_URL.lower())
+)
+
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"sslmode": "require"} if "railway" in (DATABASE_URL or "") else {}
+    connect_args={"sslmode": "require"} if _use_pg_ssl else {},
 )
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 Base = declarative_base()
