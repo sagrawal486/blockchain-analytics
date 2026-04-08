@@ -5,14 +5,22 @@ from dotenv import load_dotenv
 load_dotenv("../backend/.env")
 
 def init_database():
+    #Docker
+    # conn = psycopg2.connect(
+    #     host="localhost",
+    #     port=5433,
+    #     database="blockchain_db",
+    #     user="postgres",
+    #     password="password"
+    # )
+    #Railway
     conn = psycopg2.connect(
-        host="localhost",
-        port=5433,
-        database="blockchain_db",
+        host="postgres.railway.internal",
+        port=5432,
+        database="railway",
         user="postgres",
-        password="password"
+        password="KOIoMjMhagyMMWJCsulfUAzRGmXiPbNP"
     )
-    
     cursor = conn.cursor()
     
     # Read and execute schema file
