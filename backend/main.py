@@ -13,7 +13,10 @@ app = FastAPI(
 # ─── CORS ─────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins       = ["*"],  # We'll restrict this after deploy
+    allow_origins = [
+        "http://localhost:5173",
+        "https://blockchain-analytics.vercel.app",  # Your Vercel URL
+    ],
     allow_credentials   = True,
     allow_methods       = ["*"],
     allow_headers       = ["*"],
