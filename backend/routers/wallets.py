@@ -12,7 +12,7 @@ router = APIRouter(
 
 
 # ─── GET all wallets ───────────────────────────────────
-@router.get("/", response_model=List[WalletResponse])
+@router.get("", response_model=List[WalletResponse])
 def get_all_wallets(db: Session = Depends(get_db)):
     """Get all monitored wallets"""
     wallets = db.query(Wallet).filter_by(is_active=True).all()
@@ -20,7 +20,7 @@ def get_all_wallets(db: Session = Depends(get_db)):
 
 
 # ─── POST add new wallet ───────────────────────────────
-@router.post("/", response_model=WalletResponse)
+@router.post("", response_model=WalletResponse)
 def add_wallet(wallet: WalletCreate, db: Session = Depends(get_db)):
     """Add a new wallet to monitor"""
     
